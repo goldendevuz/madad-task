@@ -31,8 +31,9 @@ DEBUG = env.bool('DEBUG')
 #todo: Close environs kutubxonasi orqali env faylidagi malumotlarni olamiz
 
 # webhook url yasash uchun noyob path yaratamiz
-WEBHOOK_PATH = hashlib.md5(BOT_TOKEN.encode()).hexdigest()
-WEBHOOK_URL = f"{env.str('WEBHOOK_DOMAIN')}/{WEBHOOK_PATH}"
+# WEBHOOK_PATH = hashlib.md5(BOT_TOKEN.encode()).hexdigest()
+WEBHOOK_PATH = "webhook/"
+WEBHOOK_URL = f"{WEBHOOK_DOMAIN}/{WEBHOOK_PATH}"
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,4 +143,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+APPEND_SLASH = True
