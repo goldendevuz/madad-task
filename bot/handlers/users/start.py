@@ -6,7 +6,7 @@ from aiogram.types import Message
 from aiogram import Router
 from aiogram.filters import Command
 
-from api.user.models import User
+# from api.user.models import User
 
 # if TYPE_CHECKING:
     # from aiogram.types import Message

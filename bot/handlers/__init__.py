@@ -1,6 +1,6 @@
 from aiogram import Router
 
-from filters import ChatPrivateFilter
+from bot.filters import ChatPrivateFilter
 
 
 def setup_routers() -> Router:

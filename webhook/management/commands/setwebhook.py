@@ -21,3 +21,4 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Run the asynchronous function using asyncio
         asyncio.run(self.set_webhook_async())
+    
