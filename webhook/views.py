@@ -1,6 +1,6 @@
 from .models import BotUser
+import asyncio
 from django.http import HttpResponse, HttpRequest   
-from asgiref.sync import async_to_sync
 from .webhook import proceed_update
 from .serializers import BotUserSerializer
 from django.http import JsonResponse
@@ -17,19 +17,14 @@ class BotUserAPIView(generics.ListCreateAPIView):
     serializer_class = BotUserSerializer
 
 
-# @csrf_exempt
-# async def telegram_webhook(request):
-#     if request.method == 'POST':
-#         request_body = request.body.decode('utf-8')
-#         await proceed_update(request_body)
-#         return JsonResponse({"status": "ok"})
-#     return JsonResponse({"status": "method not allowed"}, status=405)
+
 
 @csrf_exempt
-def telegram_webhook(request: HttpRequest):
+async def telegram_webhook(request: HttpRequest):
     try:
-        async_to_sync(proceed_update)(request)
-        # print(request.body)
+        # Directly call the async function since we're in an async view
+        await proceed_update(request)
     except Exception as e:
-        print(e)
-    return HttpResponse("<h1>Welcome to the WEBHOOK Page!</h1>")
+        # Log the exception
+        print(f"Error in webhook: {e}")
+    return JsonResponse({"status": "ok"}, status=200)
