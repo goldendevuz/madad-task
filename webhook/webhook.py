@@ -4,7 +4,8 @@ from django.http import HttpRequest
 from bot.loader import bot, dp
 
 
-async def proceed_update(req: HttpRequest):
-    print("Umrbek Webhook: ", req.body)
-    upd = types.Update(**(json.loads(req.body)))
-    await dp.feed_update(bot, upd)
+async def proceed_update(req: HttpRequest):    
+    # Validate and create the update object
+    update = types.Update.model_validate(json.loads(req.body), context={"bot": bot})
+    # Process the update using the dispatcher and include the bot
+    await dp.feed_update(bot, update)
