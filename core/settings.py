@@ -2,9 +2,10 @@ import os
 import hashlib
 from pathlib import Path
 # from environs import Env
-from core.data.config import BOT_TOKEN, WEBHOOK_DOMAIN, SECRET_KEY
+from core.data.config import BOT_TOKEN, WEBHOOK_DOMAIN, SECRET_KEY, DEBUG
 
 SECRET_KEY = SECRET_KEY
+DEBUG = DEBUG
 
 # webhook url yasash uchun noyob path yaratamiz
 # WEBHOOK_PATH = "webhook/"
