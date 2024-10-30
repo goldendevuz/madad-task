@@ -2,7 +2,7 @@ import logging
 
 from aiogram import Bot
 
-from core.settings import ADMINS
+from core.data.config import ADMINS
 
 
 async def on_startup_notify(bot: Bot):

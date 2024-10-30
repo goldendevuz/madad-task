@@ -7,7 +7,7 @@ from bot.loader import  bot
 from bot.keyboards.inline.buttons import are_you_sure_markup
 from bot.states.test import AdminState
 from bot.filters.admin import IsBotAdminFilter
-from core.settings import ADMINS
+from core.data.config import ADMINS
 from bot.utils.pgtoexcel import export_to_excel
 
 router = Router()
