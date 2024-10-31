@@ -1,5 +1,4 @@
 from .models import BotUser
-import asyncio
 from django.http import HttpResponse, HttpRequest   
 from .webhook import proceed_update
 from .serializers import BotUserSerializer
@@ -17,8 +16,17 @@ class BotUserAPIView(generics.ListCreateAPIView):
     serializer_class = BotUserSerializer
 
 
+def get_bot_user(request, user_id):
+    try:
+        user = BotUser.objects.get(user_id=user_id)
+        return JsonResponse({"user_id": user.user_id, 
+                             "username": user.username, 
+                             "name": user.name, 
+                             "user_info": "User already exists"}, status=200)
+    except BotUser.DoesNotExist:
+        return JsonResponse({"error": "User not found"}, status=404)
 
-
+# Register webhook
 @csrf_exempt
 async def telegram_webhook(request: HttpRequest):
     try:
@@ -28,3 +36,4 @@ async def telegram_webhook(request: HttpRequest):
         # Log the exception
         print(f"Error in webhook: {e}")
     return JsonResponse({"status": "ok"}, status=200)
+

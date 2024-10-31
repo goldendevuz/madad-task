@@ -1,26 +1,22 @@
 import requests
 from core.data.config import BASE_URL
 
-def create_user(user_id: str, username: str, name: str):
-    print(user_id, username, name)
+def create_user(user_id: int, username: str, name: str):
     # Check if user already exists
-    try:
-        check_response = requests.get(f"{BASE_URL}/bot-users/{user_id}/")
-    except Exception as e:
-        print(e)
+    check_response = requests.get(f"{BASE_URL}/webhook/bot-users/{user_id}")
     
     if check_response.status_code == 404:  # User does not exist
         # Proceed to create the user
         create_response = requests.post(
-            url=f"{BASE_URL}/bot-users/",
+            url=f"{BASE_URL}/webhook/bot-users",
             json={"user_id": user_id, "username": username, "name": name}
         )
-        
+
         if create_response.status_code == 201:
-            return "User created successfully."
+            return {"message": "User created successfully.", "is_user_created": True}
         else:
-            return "Failed to create user:"
+            return {"message": "Failed to create user!", "is_user_created": False}
     elif check_response.status_code == 200:
-        return "User already exists."
+        return {"message": "User already exists.", "is_user_created": False}
     else:
-        return "Error checking user!"
+        return {"message": "Error checking user!", "is_user_created": False}
