@@ -1,17 +1,10 @@
 import os
-import hashlib
 from pathlib import Path
 # from environs import Env
-from core.data.config import BOT_TOKEN, WEBHOOK_DOMAIN, SECRET_KEY, DEBUG
+from core.data.config import SECRET_KEY, DEBUG
 
 SECRET_KEY = SECRET_KEY
 DEBUG = DEBUG
-
-# webhook url yasash uchun noyob path yaratamiz
-# WEBHOOK_PATH = "webhook/"
-WEBHOOK_PATH = hashlib.md5(BOT_TOKEN.encode()).hexdigest()
-WEBHOOK_URL = f"{WEBHOOK_DOMAIN}/{WEBHOOK_PATH}"
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,4 +116,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'core/staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-APPEND_SLASH = True
+APPEND_SLASH = False

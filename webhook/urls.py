@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import BotUserAPIView, telegram_webhook, get_bot_user
-from core.settings import WEBHOOK_PATH
+from core.data.config import WEBHOOK_PATH
 
 urlpatterns = [
     path('bot-users', BotUserAPIView.as_view(), name='bot-users'),

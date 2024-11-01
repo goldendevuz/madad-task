@@ -3,7 +3,7 @@ from aiogram.enums.parse_mode import ParseMode
 from aiogram.client.default import DefaultBotProperties
 from bot.handlers import setup_routers
 # from utils.db.postgres import Database
-from core.settings import BOT_TOKEN
+from core.data.config import BOT_TOKEN
 from bot.middlewares.throttling import ThrottlingMiddleware
 
 # db = Database()

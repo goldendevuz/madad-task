@@ -1,4 +1,5 @@
 import os
+import hashlib
 from environs import Env
 
 #todo:Open environs kutubxonasi orqali env faylidagi malumotlarni olamiz
@@ -15,3 +16,9 @@ WEBHOOK_DOMAIN = env.str('WEBHOOK_DOMAIN')
 SECRET_KEY = env.str('SECRET_KEY')
 BASE_URL = env.str('BASE_URL')
 DEBUG = env.bool('DEBUG')
+
+# webhook url yasash uchun noyob path yaratamiz
+# WEBHOOK_PATH = "webhook/" 
+# yoki
+WEBHOOK_PATH = hashlib.md5(BOT_TOKEN.encode()).hexdigest()
+WEBHOOK_URL = f"{WEBHOOK_DOMAIN}/api/webhook/{WEBHOOK_PATH}"

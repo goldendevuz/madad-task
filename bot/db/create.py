@@ -1,15 +1,19 @@
 import requests
+import asyncio
 from core.data.config import BASE_URL
 
-def create_user(user_id: int, username: str, name: str):
+async def create_user(user_id: int, username: str, name: str):
     # Check if user already exists
-    check_response = requests.get(f"{BASE_URL}/webhook/bot-users/{user_id}")
-    
-    if check_response.status_code == 404:  # User does not exist
-        # Proceed to create the user
-        create_response = requests.post(
-            url=f"{BASE_URL}/webhook/bot-users",
-            json={"user_id": user_id, "username": username, "name": name}
+    loop = asyncio.get_running_loop()
+
+    # Make the synchronous request in a separate thread
+    check_response = await loop.run_in_executor(None, requests.get, f"{BASE_URL}/webhook/bot-users/{user_id}")
+    if check_response.status_code == 404:
+        create_response = await loop.run_in_executor(
+            None, 
+            requests.post, 
+            f"{BASE_URL}/webhook/bot-users", 
+            {"user_id": user_id, "username": username, "name": name}
         )
 
         if create_response.status_code == 201:
