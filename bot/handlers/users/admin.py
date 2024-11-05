@@ -4,23 +4,25 @@ from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from bot.loader import  bot
-from bot.keyboards.inline.buttons import are_you_sure_markup
+from webhook.models import BotUser
+from bot.keyboards.inline.buttons import inline_menu
 from bot.states.test import AdminState
 from bot.filters.admin import IsBotAdminFilter
 from core.data.config import ADMINS
 from bot.utils.pgtoexcel import export_to_excel
+from asgiref.sync import async_to_sync
 
 router = Router()
 
 
-# @router.message(Command('allusers'), IsBotAdminFilter(ADMINS))
-# async def get_all_users(message: types.Message):
-#     users = await db.select_all_users()
+@router.message(Command('allusers'), IsBotAdminFilter(ADMINS))
+async def get_all_users(message: types.Message):
+    users = BotUser.objects.all()
 
-#     file_path = f"data/users_list.xlsx"
-#     await export_to_excel(data=users, headings=['ID', 'Full Name', 'Username', 'Telegram ID'], filepath=file_path)
+    file_path = f"data/users_list.xlsx"
+    await export_to_excel(data=users, headings=['Telegram ID', 'Full Name', 'Username'], filepath=file_path)
 
-#     await message.answer_document(types.input_file.FSInputFile(file_path))
+    await message.answer_document(types.input_file.FSInputFile(file_path))
 
 
 # @router.message(Command('reklama'), IsBotAdminFilter(ADMINS))
