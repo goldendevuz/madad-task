@@ -4,11 +4,13 @@ from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from bot.loader import  bot
+import requests
+from bot.db.get_users import get_all_users
 from webhook.models import BotUser
 from bot.keyboards.inline.buttons import inline_menu
 from bot.states.test import AdminState
 from bot.filters.admin import IsBotAdminFilter
-from core.data.config import ADMINS
+from core.data.config import ADMINS, BASE_URL
 from bot.utils.pgtoexcel import export_to_excel
 from asgiref.sync import async_to_sync
 
@@ -16,12 +18,11 @@ router = Router()
 
 
 @router.message(Command('allusers'), IsBotAdminFilter(ADMINS))
-async def get_all_users(message: types.Message):
-    users = BotUser.objects.all()
-
-    file_path = f"data/users_list.xlsx"
+async def get_users(message: types.Message):
+    users = await get_all_users()
+    print(users)
+    file_path = f"bot/data/users.xlsx"
     await export_to_excel(data=users, headings=['Telegram ID', 'Full Name', 'Username'], filepath=file_path)
-
     await message.answer_document(types.input_file.FSInputFile(file_path))
 
 

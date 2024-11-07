@@ -23,12 +23,12 @@ async def export_to_excel(data, headings, filepath):
     # Spreadsheet row and column indexes start at 1,
     # so we use "start = 1" in enumerate, so
     # we don't need to add 1 to the indexes.
-    for colno, heading in enumerate(headings, start=1):
-        sheet.cell(row=1, column=colno).value = heading
+    for col_number, heading in enumerate(headings, start=1):
+        sheet.cell(row=1, column=col_number).value = heading
 
     # This time we use "start = 2" to skip the heading row.
-    for rowno, row in enumerate(data, start=2):
-        for colno, cell_value in enumerate(row, start=1):
-            sheet.cell(row=rowno, column=colno).value = cell_value
+    for row_number, rowdata in enumerate(data, start=2):
+        for col_number, value in enumerate(rowdata, start=1):
+            sheet.cell(row=row_number, column=col_number).value = value
 
     wb.save(filepath)
