@@ -28,26 +28,25 @@ async def get_users(message: types.Message):
         await message.answer("Foydalanuvchilar bazada topilmadi")    
 
 
-# @router.message(Command('reklama'), IsBotAdminFilter(ADMINS))
-# async def ask_ad_content(message: types.Message, state: FSMContext):
-#     await message.answer("Reklama uchun post yuboring")
-#     await state.set_state(AdminState.ask_ad_content)
+@router.message(Command('reklama'), IsBotAdminFilter(ADMINS))
+async def ask_ad_content(message: types.Message, state: FSMContext):
+    await message.answer("Reklama uchun post yuboring")
+    await state.set_state(AdminState.ask_ad_content)
 
 
-# @router.message(AdminState.ask_ad_content, IsBotAdminFilter(ADMINS))
-# async def send_ad_to_users(message: types.Message, state: FSMContext):
-#     users = await db.select_all_users()
-#     count = 0
-#     for user in users:
-#         user_id = user[-1]
-#         try:
-#             await message.send_copy(chat_id=user_id)
-#             count += 1
-#             await asyncio.sleep(0.05)
-#         except Exception as error:
-#             logging.info(f"Ad did not send to user: {user_id}. Error: {error}")
-#     await message.answer(text=f"Reklama {count} ta foydalauvchiga muvaffaqiyatli yuborildi.")
-#     await state.clear()
+@router.message(AdminState.ask_ad_content, IsBotAdminFilter(ADMINS))
+async def send_ad_to_users(message: types.Message, state: FSMContext):
+    users = await get_all_users()
+    count = 0
+    for user in users:
+        try:
+            await message.send_copy(chat_id=user["user_id"])
+            count += 1
+            await asyncio.sleep(0.05)
+        except Exception as error:
+            logging.info(f"Add did not send to user: {user["user_id"]}. Error: {error}")
+    await message.answer(text=f"Reklama {count} ta foydalauvchiga muvaffaqiyatli yuborildi.")
+    await state.clear()
 
 
 # @router.message(Command('cleandb'), IsBotAdminFilter(ADMINS))

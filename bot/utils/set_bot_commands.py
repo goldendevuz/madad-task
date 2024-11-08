@@ -18,6 +18,7 @@ async def set_default_commands(bot: Bot):
         BotCommand(command="/start", description="Start the bot"),
         BotCommand(command="/help", description="Get help information"),
         BotCommand(command="/allusers", description="Get all users"),
+        BotCommand(command="/reklama", description="Give advertising post"),
 
         # BotCommand(command="ban", description="Ban a user"),
         # BotCommand(command="unban", description="Unban a user"),
