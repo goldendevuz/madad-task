@@ -3,8 +3,10 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message, ReplyKeyboardRemove, CallbackQuery
 from bot.keyboards.reply.buttons import main_menu
 from bot.keyboards.inline.buttons import inline_menu
+from bot.utils.set_bot_commands import set_default_commands
 from typing import TYPE_CHECKING
 from aiogram import Router
+from bot.loader import bot
 from bot.db.create import create_user
 
 if TYPE_CHECKING:
@@ -15,6 +17,9 @@ router = Router()
 
 @router.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
+    await set_default_commands(bot)
+
+    # Check if user already exists
     user = await create_user(user_id=message.from_user.id, 
                                   username=message.from_user.username, 
                                   name=message.from_user.full_name)

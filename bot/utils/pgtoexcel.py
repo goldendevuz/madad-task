@@ -2,19 +2,9 @@ import openpyxl
 from openpyxl.styles import Font
 
 
-async def export_to_excel(data, headings, filepath):
-    """
-    Exports data from PostgreSQL to an Excel spreadsheet using psycopg2.
+async def export_to_excel(data,filepath):
 
-    Arguments:
-    connection - an open psycopg2 (this function does not close the connection)
-    query_string - SQL to get data
-    headings - list of strings to use as column headings
-    filepath - path and filename of the Excel file
-
-    psycopg2 and file handling errors bubble up to calling code.
-    """
-
+    headings = list(data[0].keys())
     wb = openpyxl.Workbook()
     sheet = wb.active
 
@@ -28,7 +18,7 @@ async def export_to_excel(data, headings, filepath):
 
     # This time we use "start = 2" to skip the heading row.
     for row_number, rowdata in enumerate(data, start=2):
-        for col_number, value in enumerate(rowdata, start=1):
+        for col_number,(key,value) in enumerate(rowdata.items(), start=1):
             sheet.cell(row=row_number, column=col_number).value = value
 
     wb.save(filepath)

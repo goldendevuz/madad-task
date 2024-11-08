@@ -20,10 +20,12 @@ router = Router()
 @router.message(Command('allusers'), IsBotAdminFilter(ADMINS))
 async def get_users(message: types.Message):
     users = await get_all_users()
-    print(users)
     file_path = f"bot/data/users.xlsx"
-    await export_to_excel(data=users, headings=['Telegram ID', 'Full Name', 'Username'], filepath=file_path)
-    await message.answer_document(types.input_file.FSInputFile(file_path))
+    if len(users) != 0:
+        await export_to_excel(data=users, filepath=file_path)
+        await message.answer_document(types.input_file.FSInputFile(file_path))
+    else:
+        await message.answer("Foydalanuvchilar bazada topilmadi")    
 
 
 # @router.message(Command('reklama'), IsBotAdminFilter(ADMINS))
