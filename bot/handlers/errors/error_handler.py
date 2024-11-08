@@ -1,4 +1,4 @@
-import logging
+from bot.utils.misc.logging import logging
 from typing import Any
 
 from aiogram import Router

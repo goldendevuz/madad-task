@@ -7,7 +7,7 @@ from bot.utils.set_bot_commands import set_default_commands
 from typing import TYPE_CHECKING
 from aiogram import Router
 from bot.loader import bot
-from bot.db.create import create_user
+from bot.cruds.create import create_user
 
 if TYPE_CHECKING:
     from aiogram.types import Message

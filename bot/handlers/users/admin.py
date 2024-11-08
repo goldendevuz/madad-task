@@ -1,18 +1,13 @@
-import logging
+from bot.utils.misc.logging import logging
 import asyncio
 from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from bot.loader import  bot
-import requests
-from bot.db.get_users import get_all_users
-from webhook.models import BotUser
-from bot.keyboards.inline.buttons import inline_menu
+from bot.cruds.get_users import get_all_users
 from bot.states.test import AdminState
 from bot.filters.admin import IsBotAdminFilter
-from core.data.config import ADMINS, BASE_URL
+from core.data.config import ADMINS
 from bot.utils.pgtoexcel import export_to_excel
-from asgiref.sync import async_to_sync
 
 router = Router()
 
@@ -47,23 +42,3 @@ async def send_ad_to_users(message: types.Message, state: FSMContext):
             logging.info(f"Add did not send to user: {user["user_id"]}. Error: {error}")
     await message.answer(text=f"Reklama {count} ta foydalauvchiga muvaffaqiyatli yuborildi.")
     await state.clear()
-
-
-# @router.message(Command('cleandb'), IsBotAdminFilter(ADMINS))
-# async def ask_are_you_sure(message: types.Message, state: FSMContext):
-#     msg = await message.reply("Haqiqatdan ham bazani tozalab yubormoqchimisiz?", reply_markup=are_you_sure_markup)
-#     await state.update_data(msg_id=msg.message_id)
-#     await state.set_state(AdminState.are_you_sure)
-
-
-# @router.callback_query(AdminState.are_you_sure, IsBotAdminFilter(ADMINS))
-# async def clean_db(call: types.CallbackQuery, state: FSMContext):
-#     data = await state.get_data()
-#     msg_id = data.get('msg_id')
-#     if call.data == 'yes':
-#         await db.delete_users()
-#         text = "Baza tozalandi!"
-#     elif call.data == 'no':
-#         text = "Bekor qilindi."
-#     await bot.edit_message_text(text=text, chat_id=call.message.chat.id, message_id=msg_id)
-#     await state.clear()
