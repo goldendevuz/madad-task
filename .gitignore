@@ -63,7 +63,6 @@ db.sqlite3-journal
 */staticfiles/
 
 # Ignore Django migration files
-*/migrations/
 */migrations/*.py
 */migrations/*.pyc
 
