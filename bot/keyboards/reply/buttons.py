@@ -7,3 +7,10 @@ main_menu = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
+
+cancel_kb = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="❌ Bekor qilish")],  # Row 1
+    ],
+    resize_keyboard=True
+)

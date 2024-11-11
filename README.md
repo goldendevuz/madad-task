@@ -39,7 +39,7 @@ ___
 ___
 ### If you have questions for this project, join and ask to me: 
 *https://t.me/pipcoderuz* <br><br>
-*09.11.2024 - Project is ready to use.*
+*11.11.2024 - Project is ready to use.*
 
 
 <p align="center">

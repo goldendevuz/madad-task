@@ -51,4 +51,5 @@ async def process_callback(callback_query: CallbackQuery):
         # Stop action logic here if needed
 
     # Answer callback to remove "loading" animation on buttons
-    await callback_query.answer()
+    # await callback_query.answer()
+    await callback_query.message.edit_reply_markup(reply_markup=None)
