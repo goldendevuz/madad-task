@@ -23,3 +23,6 @@ DEBUG = env.bool('DEBUG')
 # yoki
 WEBHOOK_PATH = hashlib.md5(BOT_TOKEN.encode()).hexdigest()
 WEBHOOK_URL = f"{WEBHOOK_DOMAIN}/api/webhook/{WEBHOOK_PATH}"
+
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")

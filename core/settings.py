@@ -1,22 +1,24 @@
 import os
 from pathlib import Path
-# from environs import Env
-from core.data.config import SECRET_KEY, DEBUG
-
-SECRET_KEY = SECRET_KEY
-DEBUG = DEBUG
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+from core.data.config import SECRET_KEY, DEBUG, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["*"]
+SECRET_KEY = SECRET_KEY
+DEBUG = DEBUG
+
+ALLOWED_HOSTS = ALLOWED_HOSTS
+CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Application definition
 INSTALLED_APPS = [
+    # 'unfold',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -25,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
+    'modeltranslation',
     'rest_framework',
+    'rosetta',
     
     # my apps
     'webhook',

@@ -1,7 +1,8 @@
 from django.db import models
+from django_extensions.db.models import TimeStampedModel
 
 # Create your models here.
-class BotUser(models.Model):
+class BotUser(TimeStampedModel):
     user_id = models.BigIntegerField(unique=True, null=True, blank=True)
     name = models.CharField(max_length=120)
     username = models.CharField(max_length=120 )
