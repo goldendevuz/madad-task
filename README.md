@@ -4,8 +4,8 @@ ___
 ### Management commands
 #### 1. Create a Virtual Environment and activate environment:
    ```
-   python3 -m venv myenv
-   source venv/bin/activate
+   python3 -m venv env
+   source env/bin/activate
    ```
 #### 2. Install all required packages
    ```pip install -r requirements.txt```
@@ -20,14 +20,14 @@ ___
 #### 5. To create an admin user in Django
    ```python3 manage.py createsuperuser```
 #### 6. To gather all static files from your project and its apps into a single directory
-   ```python3 manage.py collectstatic```
+   ```python3 manage.py collectstatic --noinput```
 #### 7. To create a public URL for your local web server, allowing external access to it over the internet or domain.
-   ```ngrok http 8000```
+   ```ngrok http 8000 # jprq http 8000```
 #### 8. SET webhook_domain to .env file from ngrok and configure environment variables as like .env.example
 #### 9. Set webhook to your bot
    ```python3 manage.py setwebhook```
 #### 10. Run an ASGI (Asynchronous Server Gateway Interface) application with Uvicorn
-   ```uvicorn core.asgi:application --host 0.0.0.0 --port 8000```
+   ```uvicorn core.asgi:application --host 0.0.0.0 --port 8000 --reload```
 ___
 ### Bot commands: 
 1. **/start**  starts the bot and create user in database

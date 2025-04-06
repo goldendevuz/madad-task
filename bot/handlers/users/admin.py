@@ -9,6 +9,8 @@ from bot.filters.admin import IsBotAdminFilter
 from core.data.config import ADMINS
 from bot.utils.pgtoexcel import export_to_excel
 from bot.keyboards.reply.buttons import cancel_kb
+from django.utils.translation import gettext as _
+from bot.utils import with_user_language
 
 router = Router()
 
@@ -21,20 +23,21 @@ async def get_users(message: types.Message):
         await export_to_excel(data=users, filepath=file_path)
         await message.answer_document(types.input_file.FSInputFile(file_path))
     else:
-        await message.answer("Foydalanuvchilar bazada topilmadi")    
+        await message.answer(_("Foydalanuvchilar bazada topilmadi"))
 
 
 @router.message(Command('reklama'), IsBotAdminFilter(ADMINS))
+@with_user_language
 async def ask_ad_content(message: types.Message, state: FSMContext):
-    await message.answer("Reklama uchun post yuboring", reply_markup=cancel_kb)
+    await message.answer(_("Reklama uchun post yuboring"), reply_markup=cancel_kb)
     await state.set_state(AdminState.ask_ad_content)
 
 
 @router.message(AdminState.ask_ad_content, IsBotAdminFilter(ADMINS))
 async def send_ad_to_users(message: types.Message, state: FSMContext):
     #  Check if the message is "❌ Bekor qilish", if so, cancel ad and clear the state
-    if message.text == "❌ Bekor qilish":
-        await message.answer("Reklama bekor qilindi.", reply_markup=types.ReplyKeyboardRemove())
+    if message.text == _("❌ Bekor qilish"):
+        await message.answer(_("Reklama bekor qilindi."), reply_markup=types.ReplyKeyboardRemove())
     else:
          # Send the ad to all users
         users = await get_all_users()
@@ -46,5 +49,7 @@ async def send_ad_to_users(message: types.Message, state: FSMContext):
                 await asyncio.sleep(0.05)
             except Exception as error:
                 logging.info(f"Add did not send to user: {user["user_id"]}. Error: {error}")
-        await message.answer(text=f"Reklama {count} ta foydalauvchiga muvaffaqiyatli yuborildi.")
+        # await message.answer(text=f"Reklama {count} ta foydalauvchiga muvaffaqiyatli yuborildi.")
+        text = _("Reklama %(count)s ta foydalanuvchiga muvaffaqiyatli yuborildi.") % {"count": count}
+        await message.answer(text=text)
     await state.clear()

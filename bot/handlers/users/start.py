@@ -8,6 +8,10 @@ from typing import TYPE_CHECKING
 from aiogram import Router
 from bot.loader import bot
 from bot.cruds.create import create_user
+from django.utils.translation import activate, gettext as _
+from asgiref.sync import sync_to_async  # sync call (usually very fast)
+from webhook.models import BotUser
+from bot.utils import with_user_language
 
 if TYPE_CHECKING:
     from aiogram.types import Message
@@ -16,18 +20,25 @@ router = Router()
 
 
 @router.message(CommandStart())
-async def command_start_handler(message: Message) -> None:
+@with_user_language
+async def command_start_handler(message: Message):
     await set_default_commands(bot)
 
-    # Check if user already exists
-    user = await create_user(user_id=message.from_user.id, 
-                                  username=message.from_user.username, 
-                                  name=message.from_user.full_name)
-    # user={"is_user_created":False}
-    if user["is_user_created"]==False:
-        await message.answer(f"Salom, {message.from_user.full_name}!\nSizni qayta ko'rib turganimizdan xursandmiz!",reply_markup=inline_menu)  
+    user_data = await create_user(
+        user_id=message.from_user.id,
+        username=message.from_user.username,
+        name=message.from_user.full_name
+    )
+
+    if not user_data["is_user_created"]:
+        text = _("Salom, {name}!\nSizni qayta ko'rib turganimizdan xursandmiz!").format(
+            name=message.from_user.full_name
+        )
+        await message.answer(text, reply_markup=inline_menu)
     else:
-        await message.answer(f"Xush kelibsiz, {message.from_user.full_name}!\n", reply_markup=main_menu)
+        text = _("Xush kelibsiz, {name}!\n").format(name=message.from_user.full_name)
+        await message.answer(text, reply_markup=main_menu)
+
 
 # Handle Yes/No responses from reply keyboard
 @router.message(lambda message: message.text in ["✅ Yes", "❌ No"])

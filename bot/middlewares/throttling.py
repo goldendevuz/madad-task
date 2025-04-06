@@ -1,6 +1,7 @@
 import asyncio
 from aiogram.dispatcher.middlewares.base import BaseMiddleware
 from aiogram.types import Message
+from django.utils.translation import gettext as _
 
 
 class ThrottlingMiddleware(BaseMiddleware):
@@ -16,7 +17,7 @@ class ThrottlingMiddleware(BaseMiddleware):
 
         if current_time - last_request_time < self.slow_mode_delay:
             # Send a rate-limit warning if requests are too frequent
-            await event.reply("Juda ko'p so'rov! Biroz kuting.")
+            await event.reply(_("Juda ko'p so'rov! Biroz kuting."))
             return
         else:
             # Update the last request time and clean up old entries if needed

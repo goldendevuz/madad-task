@@ -1,4 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from django.utils.translation import gettext as _
 
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
@@ -10,7 +11,7 @@ main_menu = ReplyKeyboardMarkup(
 
 cancel_kb = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="❌ Bekor qilish")],  # Row 1
+        [KeyboardButton(text=_("❌ Bekor qilish"))],
     ],
     resize_keyboard=True
 )

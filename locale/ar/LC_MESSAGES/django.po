@@ -1,0 +1,36 @@
+#: bot/handlers/users/admin.py:26
+msgid "Foydalanuvchilar bazada topilmadi"
+msgstr ""
+
+#: bot/handlers/users/admin.py:32
+msgid "Reklama uchun post yuboring"
+msgstr ""
+
+#: bot/handlers/users/admin.py:39 bot/keyboards/reply/buttons.py:14
+msgid " Bekor qilish"
+msgstr ""
+
+#: bot/handlers/users/admin.py:40
+msgid "Reklama bekor qilindi."
+msgstr ""
+
+#: bot/handlers/users/admin.py:53
+#, python-format
+msgid "Reklama %(count)s ta foydalanuvchiga muvaffaqiyatli yuborildi."
+msgstr ""
+
+#: bot/handlers/users/start.py:34
+#, python-brace-format
+msgid ""
+"Salom, {name}!\n"
+"Sizni qayta ko'rib turganimizdan xursandmiz!"
+msgstr ""
+
+#: bot/handlers/users/start.py:39
+#, python-brace-format
+msgid "Xush kelibsiz, {name}!\n"
+msgstr ""
+
+#: bot/middlewares/throttling.py:20
+msgid "Juda ko'p so'rov! Biroz kuting."
+msgstr ""
