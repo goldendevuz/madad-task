@@ -1,5 +1,6 @@
 from aiogram import Router, types
 from aiogram.filters.command import Command
+
 from core.data.config import ADMINS
 
 router = Router()
@@ -21,4 +22,3 @@ async def bot_help(message: types.Message):
                 "/start - Botni ishga tushirish",
                 "/help - Yordam")
     await message.answer(text="\n".join(text))
-    await message.answer(current_lang_text, reply_markup=keyboard)

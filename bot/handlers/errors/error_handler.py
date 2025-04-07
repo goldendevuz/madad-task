@@ -1,4 +1,3 @@
-from bot.utils.misc.logging import logging
 from typing import Any
 
 from aiogram import Router
@@ -19,7 +18,10 @@ from aiogram.exceptions import (
 )
 from aiogram.handlers import ErrorHandler
 
+from bot.utils.misc.logging import logging
+
 router = Router()
+
 
 @router.errors()
 class MyErrorHandler(ErrorHandler):
@@ -28,7 +30,7 @@ class MyErrorHandler(ErrorHandler):
         Xatoliklar qayd etuvchi handler. Barcha xatoliklarni log qiladi va
         ularni qanday qo'lga olish mumkinligini ko'rsatadi.
         """
-        
+
         # Xatoliklar uchun log yaratish
         error_mapping = {
             TelegramUnauthorizedError: "Bot tokeni yaroqsiz.",

@@ -1,8 +1,8 @@
+from asgiref.sync import async_to_sync
 from django.core.management.base import BaseCommand
+
 from bot.loader import bot
 from core.data.config import WEBHOOK_URL
-import asyncio
-from asgiref.sync import async_to_sync
 
 
 class Command(BaseCommand):
@@ -19,8 +19,5 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.NOTICE(f"Webhook url: {WEBHOOK_URL}"))
                 self.stdout.write(self.style.WARNING("Webhook is already setted!"))
 
-
     def handle(self, *args, **kwargs):
         async_to_sync(self.set_webhook_async)()
-
-    

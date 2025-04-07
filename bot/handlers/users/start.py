@@ -1,17 +1,17 @@
 from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.types import Message, ReplyKeyboardRemove, CallbackQuery
-from bot.keyboards.reply.buttons import main_menu
-from bot.keyboards.inline.buttons import inline_menu
-from bot.utils.set_bot_commands import set_default_commands
-from typing import TYPE_CHECKING
-from aiogram import Router
-from bot.loader import bot
+from django.utils.translation import gettext as _
+
 from bot.cruds.create import create_user
-from django.utils.translation import activate, gettext as _
-from asgiref.sync import sync_to_async  # sync call (usually very fast)
-from webhook.models import BotUser
-from bot.utils import with_user_language
+from bot.keyboards.reply.buttons import command_start
+from bot.loader import bot
+from bot.utils import with_user_language, update_google_sheet
+from bot.utils.set_bot_commands import set_default_commands
 
 if TYPE_CHECKING:
     from aiogram.types import Message
@@ -34,10 +34,11 @@ async def command_start_handler(message: Message):
         text = _("Salom, {name}!\nSizni qayta ko'rib turganimizdan xursandmiz!").format(
             name=message.from_user.full_name
         )
-        await message.answer(text, reply_markup=inline_menu)
+        await message.answer(text, reply_markup=command_start)
     else:
         text = _("Xush kelibsiz, {name}!\n").format(name=message.from_user.full_name)
-        await message.answer(text, reply_markup=main_menu)
+        await message.answer(text)
+        await update_google_sheet()
 
 
 # Handle Yes/No responses from reply keyboard

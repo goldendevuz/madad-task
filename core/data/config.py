@@ -1,8 +1,9 @@
-import os
 import hashlib
+import os
+
 from environs import Env
 
-#todo:Open environs kutubxonasi orqali env faylidagi malumotlarni olamiz
+# todo:Open environs kutubxonasi orqali env faylidagi malumotlarni olamiz
 env = Env()
 # .env file ni core/data ichida ochamiz
 if not os.path.exists('core/data/.env'):

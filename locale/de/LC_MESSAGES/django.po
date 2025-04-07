@@ -1,23 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: your-project 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-06 12:00+0000\n"
+"PO-Revision-Date: 2025-04-06 12:00+0000\n"
+"Last-Translator: Your Name <you@example.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 #: bot/handlers/users/admin.py:26
 msgid "Foydalanuvchilar bazada topilmadi"
-msgstr ""
+msgstr "Benutzer wurden in der Datenbank nicht gefunden"
 
 #: bot/handlers/users/admin.py:32
 msgid "Reklama uchun post yuboring"
-msgstr ""
+msgstr "Bitte senden Sie einen Beitrag für die Werbung"
 
 #: bot/handlers/users/admin.py:39 bot/keyboards/reply/buttons.py:14
 msgid " Bekor qilish"
-msgstr ""
+msgstr "Abbrechen"
 
 #: bot/handlers/users/admin.py:40
 msgid "Reklama bekor qilindi."
-msgstr ""
+msgstr "Werbung wurde storniert."
 
 #: bot/handlers/users/admin.py:53
 #, python-format
 msgid "Reklama %(count)s ta foydalanuvchiga muvaffaqiyatli yuborildi."
-msgstr ""
+msgstr "Werbung wurde erfolgreich an %(count)s Benutzer gesendet."
 
 #: bot/handlers/users/start.py:34
 #, python-brace-format
@@ -25,12 +37,14 @@ msgid ""
 "Salom, {name}!\n"
 "Sizni qayta ko'rib turganimizdan xursandmiz!"
 msgstr ""
+"Hallo, {name}!\n"
+"Es freut uns, dich wiederzusehen!"
 
 #: bot/handlers/users/start.py:39
 #, python-brace-format
 msgid "Xush kelibsiz, {name}!\n"
-msgstr ""
+msgstr "Willkommen, {name}!\n"
 
 #: bot/middlewares/throttling.py:20
 msgid "Juda ko'p so'rov! Biroz kuting."
-msgstr ""
+msgstr "Zu viele Anfragen! Bitte warten Sie einen Moment."

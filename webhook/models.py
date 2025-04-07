@@ -1,6 +1,7 @@
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 
+
 class BotUser(TimeStampedModel):
     user_id = models.BigIntegerField(unique=True, null=True, blank=True)
     name = models.CharField(max_length=120)
@@ -15,3 +16,7 @@ class BotUser(TimeStampedModel):
     def __str__(self):
         return f"{self.name} ({self.username}) - ID: {self.user_id} - Lang: {self.language}"
 
+
+class Feedback(TimeStampedModel):
+    user = models.ForeignKey(BotUser, on_delete=models.SET_DEFAULT, default=None)
+    body = models.TextField(max_length=2000)

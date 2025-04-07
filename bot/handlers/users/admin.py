@@ -1,16 +1,18 @@
-from bot.utils.misc.logging import logging
 import asyncio
+
 from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from bot.cruds.get_users import get_all_users
-from bot.states.test import AdminState
-from bot.filters.admin import IsBotAdminFilter
-from core.data.config import ADMINS
-from bot.utils.pgtoexcel import export_to_excel
-from bot.keyboards.reply.buttons import cancel_kb
 from django.utils.translation import gettext as _
+
+from bot.cruds.get_users import get_all_users
+from bot.filters.admin import IsBotAdminFilter
+from bot.keyboards.reply.buttons import cancel_kb
+from bot.states.test import AdminState
 from bot.utils import with_user_language
+from bot.utils.misc.logging import logging
+from bot.utils.pgtoexcel import export_to_excel
+from core.data.config import ADMINS
 
 router = Router()
 
@@ -34,12 +36,13 @@ async def ask_ad_content(message: types.Message, state: FSMContext):
 
 
 @router.message(AdminState.ask_ad_content, IsBotAdminFilter(ADMINS))
+@with_user_language
 async def send_ad_to_users(message: types.Message, state: FSMContext):
     #  Check if the message is "❌ Bekor qilish", if so, cancel ad and clear the state
     if message.text == _("❌ Bekor qilish"):
         await message.answer(_("Reklama bekor qilindi."), reply_markup=types.ReplyKeyboardRemove())
     else:
-         # Send the ad to all users
+        # Send the ad to all users
         users = await get_all_users()
         count = 0
         for user in users:
@@ -49,7 +52,6 @@ async def send_ad_to_users(message: types.Message, state: FSMContext):
                 await asyncio.sleep(0.05)
             except Exception as error:
                 logging.info(f"Add did not send to user: {user["user_id"]}. Error: {error}")
-        # await message.answer(text=f"Reklama {count} ta foydalauvchiga muvaffaqiyatli yuborildi.")
         text = _("Reklama %(count)s ta foydalanuvchiga muvaffaqiyatli yuborildi.") % {"count": count}
         await message.answer(text=text)
     await state.clear()

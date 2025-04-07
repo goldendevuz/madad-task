@@ -8,8 +8,10 @@ mig:
 	python manage.py makemigrations && python manage.py migrate
 cru:
 	python manage.py createsuperuser --username=goldendev --email=goldendev@gmail.com
+webhook:
+	python3 manage.py setwebhook
 run:
-	python manage.py runserver 0.0.0.0:8000
+	uvicorn core.asgi:application --host 0.0.0.0 --port 8000 --reload
 clear:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete && find . -path "*/migrations/*.pyc"  -delete
 no-db:

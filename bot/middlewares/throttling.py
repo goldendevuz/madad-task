@@ -1,4 +1,5 @@
 import asyncio
+
 from aiogram.dispatcher.middlewares.base import BaseMiddleware
 from aiogram.types import Message
 from django.utils.translation import gettext as _

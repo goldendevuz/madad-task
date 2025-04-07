@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import BotUser
+
+from .models import BotUser, Feedback
 
 admin.site.site_header = "Pipcoder admin"  # Title displayed at the top of the admin page
-admin.site.site_title = "@pipcoder"    # Title displayed in the browser tab
+admin.site.site_title = "@pipcoder"  # Title displayed in the browser tab
 admin.site.index_title = "Webhook bot"  # Title displayed on the admin index page
+
 
 class BaseAdmin(admin.ModelAdmin):
     list_per_page = 10
@@ -11,8 +13,15 @@ class BaseAdmin(admin.ModelAdmin):
     class Meta:
         abstract = True
 
+
 # Register your models here.
 @admin.register(BotUser)
 class BotUserAdmin(BaseAdmin):
     list_display = [f.name for f in BotUser._meta.fields]
     search_fields = ('user_id', 'username', 'name')
+
+
+# Register your models here.
+@admin.register(Feedback)
+class FeedbackAdmin(BaseAdmin):
+    list_display = [f.name for f in Feedback._meta.fields]
