@@ -1,0 +1,13 @@
+services:
+  bot:
+    build: .
+    container_name: webhook_bot
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - JPRQ_AUTH_KEY=${JPRQ_AUTH_KEY}  # Load from .env file
+    volumes:
+      - .:/usr/src/app
+    restart: always
+    user: root
