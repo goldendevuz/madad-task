@@ -8,11 +8,12 @@ ENV PYTHONUNBUFFERED 1
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install system dependencies, including make, curl, and sudo
+# Install system dependencies (only run this step if necessary)
 RUN apt-get update && \
-    apt-get install -y make curl sudo && \
+    apt-get install -y --no-install-recommends make curl sudo && \
     curl -fsSL https://jprq.io/install.sh | sudo bash && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip to the latest version
 RUN pip install --upgrade pip
