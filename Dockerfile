@@ -14,6 +14,9 @@ RUN apt-get update && \
     curl -fsSL https://jprq.io/install.sh | sudo bash && \
     apt-get clean
 
+# Upgrade pip to the latest version
+RUN pip install --upgrade pip
+
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
