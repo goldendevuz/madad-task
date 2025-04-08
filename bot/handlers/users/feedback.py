@@ -54,6 +54,7 @@ async def feedback_2(message: Message, state: FSMContext, bot):
         # Send message to admins
         for admin in ADMINS:
             try:
+                await bot.send_message( admin, f'New feedback from <a href="tg://user?id={message.from_user.id}">{message.from_user.full_name}</a>:\n{message.text}', parse_mode='HTML' )
                 await bot.send_message(admin, f"New feedback from {message.from_user.full_name}:\n{message.text}")
             except Exception as err:
                 logging.exception(err)
