@@ -8,9 +8,9 @@ ENV PYTHONUNBUFFERED 1
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install system dependencies and curl
+# Install system dependencies, including make, curl, and sudo
 RUN apt-get update && \
-    apt-get install -y curl sudo && \
+    apt-get install -y make curl sudo && \
     curl -fsSL https://jprq.io/install.sh | sudo bash && \
     apt-get clean
 
@@ -26,3 +26,4 @@ EXPOSE 8000
 
 # Run the startup script
 CMD ["bash", "start.sh"]
+
