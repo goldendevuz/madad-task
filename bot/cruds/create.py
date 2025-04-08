@@ -1,10 +1,10 @@
 import aiohttp
-import asyncio
 from icecream import ic
 from core.data.config import BASE_URL
 
 async def create_user(user_id: int, username: str, name: str):
     async with aiohttp.ClientSession() as session:
+        ic("create_user")
         # Check if user already exists
         async with session.get(f"{BASE_URL}/webhook/bot-users/{user_id}") as check_response:
             if check_response.status == 404:
@@ -20,6 +20,7 @@ async def create_user(user_id: int, username: str, name: str):
 
 async def create_feedback(user, body: str):
     async with aiohttp.ClientSession() as session:
+        ic("create_feedback")
         # Send feedback
         async with session.post(f"{BASE_URL}/webhook/feedbacks", json={"user": user.id, "body": body}) as create_response:
             ic(create_response.__dict__)
