@@ -20,3 +20,5 @@ re-django:
 	pip3 uninstall Django -y && pip3 install Django
 re-mig:
 	make no-db && make clear && make re-django && make mig && make cru && make run
+collect:
+	python manage.py collectstatic --noinput
