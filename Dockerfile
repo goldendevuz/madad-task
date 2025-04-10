@@ -30,4 +30,3 @@ EXPOSE 8000
 
 # Run the startup script
 CMD ["bash", "start.sh"]
-

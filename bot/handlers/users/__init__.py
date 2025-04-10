@@ -1,6 +1,12 @@
 from . import admin
-# from . import echo
 from . import help
 from . import set_lang
 from . import start
 from . import feedback
+from . import term_payment
+from . import courses
+from . import services
+from . import contact
+from . import register
+from . import shared
+from . import echo

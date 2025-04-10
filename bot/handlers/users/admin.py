@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 from bot.cruds.get_users import get_all_users
 from bot.filters.admin import IsBotAdminFilter
 from bot.keyboards.reply.buttons import cancel_kb
-from bot.states.test import AdminState
+from bot.states import AdminState
 from bot.utils import with_user_language
 from bot.utils.misc.logging import logging
 from bot.utils.pgtoexcel import export_to_excel

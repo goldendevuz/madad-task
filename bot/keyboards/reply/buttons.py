@@ -1,14 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from django.utils.translation import gettext as _
 
-main_menu = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="✅ Yes"), KeyboardButton(text="❌ No")],  # Row 1
-        # [KeyboardButton("Option 3")]                        # Row 2
-    ],
-    resize_keyboard=True
-)
-
 cancel_kb = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text=_("❌ Bekor qilish"))],
@@ -27,37 +19,28 @@ command_start = ReplyKeyboardMarkup(resize_keyboard=True,
                                             KeyboardButton(text="📝 Ro'yxatdan o'tish"),
                                         ],
                                         [
-                                            KeyboardButton(text=_("📨 Taklif va shikoyatlar uchun")),
+                                            KeyboardButton(text=_("📞 Bog'lanish")),
                                         ]
                                     ]
                                     )
 
-courses_keyboard = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
-    [
-        KeyboardButton(text="Kompyuter Savodxonligi PRO"),
-        KeyboardButton(text="Kompyuter Savodxonligi LIGHT"),
-    ],
-    [
-        KeyboardButton(text="Grafik Dizayn Kursi"),
-        KeyboardButton(text="Web Dasturlash (9 oy)"),
-    ],
-    [
-        KeyboardButton(text="React JS Kursi (2 oy)"),
-        KeyboardButton(text="Mobil Dasturlash (Flutter) - 9 oy"),
-    ],
-    [
-        KeyboardButton(text="Mobilografiya Kursi (2 oy)"),
-        KeyboardButton(text="Matematika Kursi"),
-    ],
-    [
-        KeyboardButton(text="Arab Tili Kursi"),
-        KeyboardButton(text="Nemis Tili Kursi (0 dan B1 darajagacha)"),
-    ],
-    [
-        KeyboardButton(text="Rus Tili Kursi (0 dan B1 darajagacha)"),
-        KeyboardButton(text="Ingliz Tili Kursi (0 dan B1 darajagacha)"),
-    ],
-    [
-        KeyboardButton(text="Xalqaro IELTS Kursi"),
-    ]
-])
+# Kurslarni tanlash uchun klaviatura (misol)
+def registration_keyboard():
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="IT kurslari"), KeyboardButton(text="Media kurslari")],
+            [KeyboardButton(text="Boshqa xizmatlar")]
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )
+    return keyboard
+
+def contact_request_keyboard():
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="📱 Telefon raqamni yuborish", request_contact=True)]
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )

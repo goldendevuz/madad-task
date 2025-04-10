@@ -11,7 +11,7 @@ python manage.py collectstatic --noinput
 
 # Authenticate with jprq and expose port 8000 using the environment variable
 jprq auth $JPRQ_AUTH_KEY
-jprq http 8000 &
+jprq http 8000 -s local &
 
 # Set the webhook
 python manage.py setwebhook
