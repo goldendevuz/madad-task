@@ -10,7 +10,7 @@ make collect
 
 # Authenticate with jprq and expose port 8000 using the environment variable
 jprq auth $JPRQ_AUTH_KEY
-jprq http 8000 -s local &
+jprq http 8000 -s abdulmajid-yunusov &
 
 # Set the webhook
 python3 manage.py setwebhook # not make webhook
