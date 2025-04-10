@@ -13,7 +13,7 @@ jprq auth $JPRQ_AUTH_KEY
 jprq http 8000 -s local &
 
 # Set the webhook
-make webhook
+python3 manage.py setwebhook # not make webhook
 
 # Start the Uvicorn ASGI server
 make run
