@@ -3,11 +3,10 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from asgiref.sync import sync_to_async
 from django.utils.translation import gettext as _
-from icecream import ic
 
 from bot.cruds.create import create_feedback
 from bot.keyboards.reply.buttons import command_start
-from bot.states.main import FeedbackState
+from bot.states import FeedbackState
 from bot.utils.misc import logging
 from bot.utils.translations import with_user_language
 from core.data.config import ADMINS
@@ -38,23 +37,23 @@ async def feedback_1(message: Message, state: FSMContext):
 
 @router.message(FeedbackState.body)
 async def feedback_2(message: Message, state: FSMContext, bot):
-    ic()
+    # ic()
     user_id = message.from_user.id
     user = await get_user_by_id(user_id)
-    ic(user)
+    # ic(user)
     feedback_data = await create_feedback(
         user=user,
         body=message.text
     )
-    ic(feedback_data)
+    # ic(feedback_data)
 
     # Check if feedback creation was successful
     if feedback_data["is_feedback_created"]:
-        ic("if")
+        # ic("if")
         # Send message to admins
         for admin in ADMINS:
             try:
-                await bot.send_message(admin, f"New feedback from {message.from_user.full_name}:\n{message.text}")
+                await bot.send_message( admin, f'New feedback from <a href="tg://user?id={message.from_user.id}">{message.from_user.full_name}</a>:\n{message.text}', parse_mode='HTML' )
             except Exception as err:
                 logging.exception(err)
 

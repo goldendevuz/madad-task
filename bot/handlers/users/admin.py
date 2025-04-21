@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 from bot.cruds.get_users import get_all_users
 from bot.filters.admin import IsBotAdminFilter
 from bot.keyboards.reply.buttons import cancel_kb
-from bot.states.test import AdminState
+from bot.states import AdminState
 from bot.utils import with_user_language
 from bot.utils.misc.logging import logging
 from bot.utils.pgtoexcel import export_to_excel
@@ -51,7 +51,7 @@ async def send_ad_to_users(message: types.Message, state: FSMContext):
                 count += 1
                 await asyncio.sleep(0.05)
             except Exception as error:
-                logging.info(f"Add did not send to user: {user["user_id"]}. Error: {error}")
+                logging.info(f"Add did not send to user: {user['user_id']}. Error: {error}")
         text = _("Reklama %(count)s ta foydalanuvchiga muvaffaqiyatli yuborildi.") % {"count": count}
         await message.answer(text=text)
     await state.clear()
