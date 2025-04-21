@@ -51,7 +51,7 @@ async def send_ad_to_users(message: types.Message, state: FSMContext):
                 count += 1
                 await asyncio.sleep(0.05)
             except Exception as error:
-                logging.info(f"Add did not send to user: {user["user_id"]}. Error: {error}")
+                logging.info(f"Add did not send to user: {user['user_id']}. Error: {error}")
         text = _("Reklama %(count)s ta foydalanuvchiga muvaffaqiyatli yuborildi.") % {"count": count}
         await message.answer(text=text)
     await state.clear()
