@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpRequest
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
+from icecream import ic
 
 from .models import BotUser, Feedback
 from .serializers import BotUserSerializer, FeedbackSerializer
@@ -42,5 +43,5 @@ async def telegram_webhook(request: HttpRequest):
         await proceed_update(request)
     except Exception as e:
         # Log the exception
-        print(f"Error in webhook: {e}")
+        ic(f"Error in webhook: {e}")
     return JsonResponse({"status": "ok"}, status=200)

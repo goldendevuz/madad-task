@@ -2,6 +2,7 @@ from aiogram import Router, types
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery
+from icecream import ic
 
 from bot.states import RegistrationStates
 from django.utils.translation import gettext as _
@@ -25,7 +26,7 @@ async def handle_go_back(callback: CallbackQuery, state: FSMContext):
         )
     except Exception as e:
         # agar xabar allaqachon o‘chirilgan yoki mavjud bo‘lmasa, xatolikni yutib yuboramiz
-        print(f"Xabarni o‘chirishda xatolik: {e}")
+        ic(f"Xabarni o‘chirishda xatolik: {e}")
 
     await callback.answer()
     await state.clear()

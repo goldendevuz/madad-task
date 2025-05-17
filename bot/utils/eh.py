@@ -1,5 +1,6 @@
 import gspread
 from gspread_formatting import set_column_width
+from icecream import ic
 
 from bot.cruds.get_users import get_all_users
 
@@ -44,4 +45,4 @@ async def update_google_sheet():
             column_letter = chr(65 + col_num - 1)
             set_column_width(wks, column_letter, max_length * 10)
     else:
-        print("No users fetched, nothing to update.")
+        ic("No users fetched, nothing to update.")

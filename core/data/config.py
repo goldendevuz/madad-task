@@ -1,5 +1,6 @@
 import hashlib
 import os
+from icecream import ic
 
 from environs import Env
 
@@ -7,8 +8,8 @@ from environs import Env
 env = Env()
 # .env file ni core/data ichida ochamiz
 if not os.path.exists('core/data/.env'):
-    print('.env fayli topilmadi!')
-    print('.env.example faylidan nusxa ko\'chirib shablonni o\'zizga moslang.')
+    ic('.env fayli topilmadi!')
+    ic('.env.example faylidan nusxa ko\'chirib shablonni o\'zizga moslang.')
     exit(1)
 env.read_env()
 

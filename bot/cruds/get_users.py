@@ -1,6 +1,6 @@
 import asyncio
-
 import requests
+from icecream import ic
 
 from core.data.config import BASE_URL
 
@@ -16,4 +16,4 @@ async def get_all_users():
         return users
     else:
         # Handle errors if the request was unsuccessful
-        print(f"Failed to fetch bot users: {response.status_code}")
+        ic(f"Failed to fetch bot users: {response.status_code}")

@@ -1,0 +1,30 @@
+[project]
+name = "madad-task"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3.20.0.post0",
+    "aiohttp>=3.11.18",
+    "django>=5.2.1",
+    "django-extensions>=4.1",
+    "django-jazzmin>=3.0.1",
+    "django-modeltranslation>=0.19.14",
+    "django-rosetta>=0.10.2",
+    "django-unfold>=0.57.0",
+    "djangorestframework>=3.16.0",
+    "drf-material>=0.3.3",
+    "environs>=14.1.1",
+    "google-api-python-client>=2.169.0",
+    "google-auth-httplib2>=0.2.0",
+    "google-auth-oauthlib>=1.2.2",
+    "gspread>=6.2.1",
+    "gspread-formatting>=1.2.1",
+    "icecream>=2.1.4",
+    "oauth2client>=4.1.3",
+    "openpyxl>=3.1.5",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+    "uvicorn>=0.34.2",
+]
