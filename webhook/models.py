@@ -6,7 +6,8 @@ class BotUser(TimeStampedModel):
     user_id = models.BigIntegerField(unique=True, null=True, blank=True)
     name = models.CharField(max_length=120)
     username = models.CharField(max_length=120)
-    language = models.CharField(max_length=10, default="uz")  # new language field
+    language = models.CharField(max_length=10, default="uz")
+    deep_link = models.CharField(max_length=120, null=True, blank=True)
 
     class Meta:
         verbose_name = "BOT USER"
@@ -18,5 +19,5 @@ class BotUser(TimeStampedModel):
 
 
 class Feedback(TimeStampedModel):
-    user = models.ForeignKey(BotUser, on_delete=models.SET_DEFAULT, default=None)
+    user = models.ForeignKey(BotUser, on_delete=models.SET_NULL, null=True, blank=True)
     body = models.TextField(max_length=2000)

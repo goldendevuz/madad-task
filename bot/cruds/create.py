@@ -2,13 +2,13 @@ import aiohttp
 from icecream import ic
 from core.data.config import BASE_URL
 
-async def create_user(user_id: int, username: str, name: str):
+async def create_user(user_id: int, username: str, name: str, deep_link: str = None):
     async with aiohttp.ClientSession() as session:
         # ic("create_user")
         # Check if user already exists
         async with session.get(f"{BASE_URL}/webhook/bot-users/{user_id}") as check_response:
             if check_response.status == 404:
-                async with session.post(f"{BASE_URL}/webhook/bot-users", json={"user_id": user_id, "username": username, "name": name}) as create_response:
+                async with session.post(f"{BASE_URL}/webhook/bot-users", json={"user_id": user_id, "username": username, "name": name, "deep_link": deep_link}) as create_response:
                     if create_response.status == 201:
                         return {"message": "User created successfully.", "is_user_created": True}
                     else:
