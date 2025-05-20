@@ -25,14 +25,14 @@ router = Router()
 @with_user_language
 async def start_handler(message: Message, command: CommandStart):
     payload = command.args  # None if no deep link
-    if payload == "qobiliyat_testi":
-        await message.answer(f"👋 Welcome with deep link: <b>{payload}</b>")
+    # if payload == "qobiliyat_testi":
+        # await message.answer(f"👋 Welcome with deep link: <b>{payload}</b>")
         # Handle specific logic here
         # html_message = format_as_html(row)
         # async_to_sync(send_telegram_message)(html_message, phone=row[16])
-        await message.answer(html_message)
-    else:
-        await message.answer("👋 Welcome! No deep link detected.")
+        # await message.answer(html_message)
+    # else:
+        # await message.answer("👋 Welcome! No deep link detected.")
     # ic()
     await set_default_commands(bot)
     # ic()
