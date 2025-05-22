@@ -29,7 +29,7 @@ async def start_handler(message: Message, command: CommandStart):
         # await message.answer(f"👋 Welcome with deep link: <b>{payload}</b>")
         # Handle specific logic here
         # html_message = format_as_html(row)
-        # async_to_sync(send_telegram_message)(html_message, phone=row[16])
+        # async_to_sync(send_telegram_message)(html_message, phone=row[15])
         # await message.answer(html_message)
     # else:
         # await message.answer("👋 Welcome! No deep link detected.")

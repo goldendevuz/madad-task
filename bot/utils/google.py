@@ -30,7 +30,7 @@ def get_user_rows(sheet_id, sheet_name="responses"):
     rows = result.get("values", [])
     user_rows = []
     for row in rows:
-        if row[16] == rows[-2][16]:  # Check if the phone number is empty
+        if row[15] == rows[-2][15]:  # Check if the phone number is empty
             user_rows.append(row)
         # Check if the row is already in the database
         # if not BotUser.objects.filter(user_id=row[3]).exists():

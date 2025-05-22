@@ -91,7 +91,7 @@ def send_latest_google_response(request):
     
     # user = User.objects.create(
     #     submitted_at=row[0],
-    #     phone=row[16],
+    #     phone=row[15],
     # )
     # user.save()
     row = rows[-1]
@@ -99,5 +99,5 @@ def send_latest_google_response(request):
     # Check if the row is empty
     html_message = format_as_html(row)
 
-    async_to_sync(send_sms_message)(html_message, phone=row[16])
+    async_to_sync(send_sms_message)(html_message, phone=row[15])
     return JsonResponse({'status': 'sent', 'message': html_message})
