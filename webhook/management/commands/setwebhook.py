@@ -2,7 +2,7 @@ from asgiref.sync import async_to_sync
 from django.core.management.base import BaseCommand
 
 from bot.loader import bot
-from core.data.config import WEBHOOK_URL
+from core.config import WEBHOOK_URL
 
 
 class Command(BaseCommand):

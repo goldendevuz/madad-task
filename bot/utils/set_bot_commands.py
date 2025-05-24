@@ -4,7 +4,7 @@ from aiogram.methods.set_my_commands import BotCommand
 from aiogram.types import BotCommandScopeDefault, BotCommandScopeChat
 from icecream import ic
 
-from core.data.config import ADMINS
+from core.config import ADMINS
 
 
 # ic(ADMINS)

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from core.data.config import WEBHOOK_PATH
+from core.config import WEBHOOK_PATH
 from .views import BotUserAPIView, FeedbackAPIView, telegram_webhook, get_bot_user, send_latest_google_response
 
 urlpatterns = [

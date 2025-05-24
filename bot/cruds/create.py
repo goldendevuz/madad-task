@@ -1,7 +1,7 @@
 import aiohttp
 from icecream import ic
 
-from core.data.config import BASE_URL
+from core.config import BASE_URL
 
 
 async def create_user(user_id: int, username: str, name: str, deep_link: str = None):

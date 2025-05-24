@@ -1,7 +1,7 @@
 from aiogram import Router, types
 from aiogram.filters.command import Command
 
-from core.data.config import ADMINS
+from core.config import ADMINS
 
 router = Router()
 

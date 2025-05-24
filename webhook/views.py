@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 
 from bot.utils.google import get_user_rows
 from bot.utils.utils import format_as_html
-from core.data.config import BASIC_AUTH_TOKEN
+from core.config import BASIC_AUTH_TOKEN
 from .models import BotUser, Feedback
 from .serializers import BotUserSerializer, FeedbackSerializer
 from .webhook import proceed_update

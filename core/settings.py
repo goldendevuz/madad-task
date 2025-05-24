@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from core.data.config import SECRET_KEY, DEBUG, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS, CSRF_COOKIE_SECURE, DB_PATH
+from core.config import SECRET_KEY, DEBUG, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS, CSRF_COOKIE_SECURE, DB_PATH
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

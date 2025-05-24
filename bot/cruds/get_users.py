@@ -3,7 +3,7 @@ import asyncio
 import requests
 from icecream import ic
 
-from core.data.config import BASE_URL
+from core.config import BASE_URL
 
 
 async def get_all_users():

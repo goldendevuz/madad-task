@@ -12,7 +12,7 @@ from bot.states import AdminState
 from bot.utils import with_user_language
 from bot.utils.misc.logging import logging
 from bot.utils.pgtoexcel import export_to_excel
-from core.data.config import ADMINS
+from core.config import ADMINS
 
 router = Router()
 

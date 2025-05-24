@@ -9,7 +9,7 @@ from bot.keyboards.reply.buttons import command_start
 from bot.states import FeedbackState
 from bot.utils.misc import logging
 from bot.utils.translations import with_user_language
-from core.data.config import ADMINS
+from core.config import ADMINS
 from webhook.models import BotUser
 
 router = Router()

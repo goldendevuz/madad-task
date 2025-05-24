@@ -5,7 +5,7 @@ from aiogram.enums.parse_mode import ParseMode
 from bot.handlers import setup_routers
 from bot.middlewares.throttling import ThrottlingMiddleware
 # from utils.db.postgres import Database
-from core.data.config import BOT_TOKEN
+from core.config import BOT_TOKEN
 
 # db = Database()
 bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))

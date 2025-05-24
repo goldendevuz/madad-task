@@ -21,3 +21,5 @@ python-dotenv
 requests  
 uvicorn
 python-decouple
+django-daisy
+django-import-export
