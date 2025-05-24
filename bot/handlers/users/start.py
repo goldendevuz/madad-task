@@ -10,7 +10,6 @@ from icecream import ic
 
 from bot.cruds.create import create_user
 from bot.keyboards.reply.buttons import command_start
-from bot.loader import bot
 from bot.utils import with_user_language, update_google_sheet
 from bot.utils.set_bot_commands import set_default_commands
 from bot.utils.utils import format_as_html
@@ -34,6 +33,7 @@ async def start_handler(message: Message, command: CommandStart):
     # else:
         # await message.answer("👋 Welcome! No deep link detected.")
     # ic()
+    from bot.loader import bot
     await set_default_commands(bot)
     # ic()
 

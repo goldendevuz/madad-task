@@ -4,7 +4,6 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from django.utils.translation import gettext as _
 from decouple import config
-from bot.loader import bot
 
 from bot.keyboards.reply.buttons import registration_keyboard, contact_request_keyboard
 from bot.states import RegistrationStates
@@ -67,6 +66,7 @@ async def process_course(message: Message, state: FSMContext):
 
     # Send to user
     await message.answer(confirmation_text)
+    from bot.loader import bot
 
     # Send to each admin
     for admin_id in config("ADMINS"):
