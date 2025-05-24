@@ -14,6 +14,7 @@ from webhook.models import BotUser
 
 router = Router()
 
+
 # Define the async-friendly ORM call
 @sync_to_async
 def get_user_by_id(user_id):
@@ -53,7 +54,9 @@ async def feedback_2(message: Message, state: FSMContext, bot):
         # Send message to admins
         for admin in ADMINS:
             try:
-                await bot.send_message( admin, f'New feedback from <a href="tg://user?id={message.from_user.id}">{message.from_user.full_name}</a>:\n{message.text}', parse_mode='HTML' )
+                await bot.send_message(admin,
+                                       f'New feedback from <a href="tg://user?id={message.from_user.id}">{message.from_user.full_name}</a>:\n{message.text}',
+                                       parse_mode='HTML')
             except Exception as err:
                 logging.exception(err)
 

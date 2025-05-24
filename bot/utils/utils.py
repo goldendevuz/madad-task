@@ -1,5 +1,6 @@
 from icecream import ic
 
+
 def format_as_html(row):
     if len(row) < 4:
         return "Yangi javob to'liq emas."

@@ -5,6 +5,8 @@ from aiogram.types import BotCommandScopeDefault, BotCommandScopeChat
 from icecream import ic
 
 from core.data.config import ADMINS
+
+
 # ic(ADMINS)
 
 
@@ -19,12 +21,12 @@ async def set_default_commands(bot: Bot):
 
     # Commands for administrators
     admin_commands = default_commands + [
-                         BotCommand(command="/allusers", description="Get all users"),
-                         BotCommand(command="/advertising", description="Give advertising post"),
+        BotCommand(command="/allusers", description="Get all users"),
+        BotCommand(command="/advertising", description="Give advertising post"),
 
-                         # BotCommand(command="ban", description="Ban a user"),
-                         # BotCommand(command="unban", description="Unban a user"),
-                     ]
+        # BotCommand(command="ban", description="Ban a user"),
+        # BotCommand(command="unban", description="Unban a user"),
+    ]
 
     for admin in ADMINS:
         try:

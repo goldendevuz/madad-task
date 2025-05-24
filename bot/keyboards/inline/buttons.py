@@ -1,6 +1,7 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from django.utils.translation import gettext as _
 
+
 def services_inline_keyboard():
     return InlineKeyboardMarkup(
         inline_keyboard=[
@@ -17,10 +18,12 @@ def services_inline_keyboard():
         ]
     )
 
+
 def close_popup_keyboard():
     close_button = InlineKeyboardButton(_("❌ Yopish"), callback_data="close_popup")
     close_keyboard = InlineKeyboardMarkup(inline_keyboard=[[close_button]])
     return close_keyboard
+
 
 def contact_inline_keyboard():
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -34,6 +37,7 @@ def contact_inline_keyboard():
         ],
     ])
     return keyboard
+
 
 courses_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [

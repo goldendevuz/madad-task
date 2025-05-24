@@ -1,4 +1,5 @@
 import os
+
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from icecream import ic
@@ -11,10 +12,12 @@ SERVICE_ACCOUNT_FILE = os.path.join(BASE_DIR, '..', '..', 'core', 'data', 'servi
 SERVICE_ACCOUNT_FILE = os.path.abspath(SERVICE_ACCOUNT_FILE)
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
+
 def get_google_services():
     creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     sheets_service = build('sheets', 'v4', credentials=creds)
     return creds, sheets_service
+
 
 def get_user_rows(sheet_id, sheet_name="responses"):
     range_name = f"{sheet_name}!A2:AA"  # First 4 columns (Timestamp, Name, Phone, Telegram)

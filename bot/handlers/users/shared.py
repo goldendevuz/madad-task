@@ -2,13 +2,11 @@ from aiogram import Router, types
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery
+from django.utils.translation import gettext as _
 from icecream import ic
 
-from bot.states import RegistrationStates
-from django.utils.translation import gettext as _
-from core.data.config import ADMINS
-
 router = Router()
+
 
 # @router.callback_query(lambda c: c.data == "go_back")
 # async def handle_go_back(callback: CallbackQuery, state: FSMContext):

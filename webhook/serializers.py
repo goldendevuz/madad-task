@@ -8,6 +8,7 @@ class BotUserSerializer(serializers.ModelSerializer):
         model = BotUser
         fields = "__all__"
 
+
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback

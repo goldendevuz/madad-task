@@ -1,8 +1,8 @@
 import hashlib
 import os
-from icecream import ic
 
 from environs import Env
+from icecream import ic
 
 # todo:Open environs kutubxonasi orqali env faylidagi malumotlarni olamiz
 env = Env()
@@ -30,3 +30,4 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
 CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
 DB_PATH = env.str("DB_PATH", default="db.sqlite3")
+BASIC_AUTH_TOKEN=env.str("BASIC_AUTH_TOKEN")

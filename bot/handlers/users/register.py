@@ -1,20 +1,23 @@
 import re
+
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
-from django.utils.translation import gettext as _
 from decouple import config
+from django.utils.translation import gettext as _
 
 from bot.keyboards.reply.buttons import registration_keyboard, contact_request_keyboard
 from bot.states import RegistrationStates
 
 router = Router()
 
+
 # Ro'yxatdan o'tish bosqichi boshlanishi: foydalanuvchi "Ro'yxatdan o'tish" tugmasini bosadi
 @router.message(F.text == _("📝 Ro'yxatdan o'tish"))
 async def start_registration(message: Message, state: FSMContext):
     await message.answer("Ism sharifingizni kiriting:")
     await state.set_state(RegistrationStates.name)
+
 
 # Foydalanuvchidan ism so'ralmoqda
 @router.message(RegistrationStates.name)
@@ -25,6 +28,7 @@ async def process_name(message: Message, state: FSMContext):
         reply_markup=contact_request_keyboard()
     )
     await state.set_state(RegistrationStates.phone)
+
 
 @router.message(RegistrationStates.phone)
 async def process_phone(message: Message, state: FSMContext):
@@ -52,6 +56,7 @@ async def process_phone(message: Message, state: FSMContext):
     )
     await state.set_state(RegistrationStates.course)
 
+
 @router.message(RegistrationStates.course)
 async def process_course(message: Message, state: FSMContext):
     await state.update_data(course=message.text)
@@ -77,4 +82,3 @@ async def process_course(message: Message, state: FSMContext):
 
     # Optionally save to DB here
     await state.clear()
-

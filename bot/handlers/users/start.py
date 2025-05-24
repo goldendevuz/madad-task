@@ -12,12 +12,12 @@ from bot.cruds.create import create_user
 from bot.keyboards.reply.buttons import command_start
 from bot.utils import with_user_language, update_google_sheet
 from bot.utils.set_bot_commands import set_default_commands
-from bot.utils.utils import format_as_html
 
 if TYPE_CHECKING:
     from aiogram.types import Message
 
 router = Router()
+
 
 @router.message(CommandStart())
 @router.message(CommandStart(deep_link=True))
@@ -25,13 +25,13 @@ router = Router()
 async def start_handler(message: Message, command: CommandStart):
     payload = command.args  # None if no deep link
     # if payload == "qobiliyat_testi":
-        # await message.answer(f"👋 Welcome with deep link: <b>{payload}</b>")
-        # Handle specific logic here
-        # html_message = format_as_html(row)
-        # async_to_sync(send_telegram_message)(html_message, phone=row[15])
-        # await message.answer(html_message)
+    # await message.answer(f"👋 Welcome with deep link: <b>{payload}</b>")
+    # Handle specific logic here
+    # html_message = format_as_html(row)
+    # async_to_sync(send_telegram_message)(html_message, phone=row[15])
+    # await message.answer(html_message)
     # else:
-        # await message.answer("👋 Welcome! No deep link detected.")
+    # await message.answer("👋 Welcome! No deep link detected.")
     # ic()
     from bot.loader import bot
     await set_default_commands(bot)

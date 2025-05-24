@@ -24,6 +24,7 @@ command_start = ReplyKeyboardMarkup(resize_keyboard=True,
                                     ]
                                     )
 
+
 # Kurslarni tanlash uchun klaviatura (misol)
 def registration_keyboard():
     keyboard = ReplyKeyboardMarkup(
@@ -35,6 +36,7 @@ def registration_keyboard():
         one_time_keyboard=True
     )
     return keyboard
+
 
 def contact_request_keyboard():
     return ReplyKeyboardMarkup(

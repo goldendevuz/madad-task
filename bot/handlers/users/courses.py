@@ -9,6 +9,7 @@ router = Router()
 # Title as a separate variable
 COURSE_TITLE = _("💻 Kompyuter Savodxonligi PRO")
 
+
 # Inline buttons for the course details
 def course_inline_keyboard():
     return InlineKeyboardMarkup(
@@ -34,6 +35,7 @@ async def feedback_1(message: Message):
     await message.reply(
         _("Kurslardan birini tanlang 👇"), reply_markup=courses_keyboard
     )
+
 
 # Initial message with title and body content
 @router.message(F.text == _("💻 Kompyuter Savodxonligi PRO"))

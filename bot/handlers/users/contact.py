@@ -6,6 +6,7 @@ from bot.keyboards.inline.buttons import contact_inline_keyboard
 
 router = Router()
 
+
 @router.message(F.text == _("📞 Bog'lanish"))
 async def send_contact_info(message: Message):
     contact_text = (

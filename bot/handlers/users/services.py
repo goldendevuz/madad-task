@@ -38,6 +38,7 @@ ALL_SERVICES = _(
     "💡 Sizning IT, AI va Dizayn sohasidagi har qanday loyihalaringizni hayotga tatbiq qilishga tayyormiz!"
 )
 
+
 @router.message(F.text == _("📅 IT Xizmatlarimiz"))
 async def show_services(message: Message):
     await message.answer(

@@ -1,6 +1,6 @@
 from aiogram import Router, types
-from aiogram.fsm.state import default_state
 from aiogram.filters import StateFilter
+from aiogram.fsm.state import default_state
 
 router = Router()
 
